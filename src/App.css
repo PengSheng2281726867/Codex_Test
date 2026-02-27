@@ -1,0 +1,47 @@
+:root {
+  --bg-primary: #0f172a;
+  --text-primary: #e2e8f0;
+  --accent: #38bdf8;
+  --card-opacity: 0.84;
+  --radius: 20px;
+}
+
+.app {
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  gap: 1.25rem;
+  place-content: center;
+  background: radial-gradient(circle at 20% 20%, var(--accent), var(--bg-primary) 40%);
+  color: var(--text-primary);
+  font-family: Inter, 'PingFang SC', sans-serif;
+}
+
+.panel,
+.stats {
+  background: color-mix(in srgb, var(--bg-primary) calc(var(--card-opacity) * 100%), #000 10%);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  min-width: 300px;
+}
+
+.time {
+  font-size: 4rem;
+  margin: 0.5rem 0;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  background: var(--accent);
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+}
