@@ -1,0 +1,51 @@
+Pomodoro Web V1 - Early Technical Route (Offline First)
+
+1) Scope lock
+- Platform: Web first
+- Product scope: pure pomodoro only (no task management)
+- Music import: local files only
+- Visual style: immersive ambience
+- Account system: fully offline for V1
+
+2) Stack
+- React + TypeScript + Vite
+- Zustand for app state
+- Tailwind CSS + Headless UI
+- Web Audio API for BGM/white-noise mixing
+- IndexedDB for persistence
+- Web Notification API for alarms
+
+3) Core architecture
+- timer-engine: finite-state machine for focus/short/long sessions
+- audio-engine: dual-channel mixer + independent volume + fallback
+- theme-system: token-based themes + immersive presets
+- persistence: repositories for settings/sessions/audio profiles
+- dashboard: today's focus duration/count summary
+
+4) Milestones
+Week 1:
+- timer FSM + phase transitions + pause/resume/skip/reset
+- settings persistence (durations, rounds, auto-start)
+- timer engine unit tests
+
+Week 2:
+- notification integration + alarm strategy
+- white-noise presets + local file import for BGM
+- playback error fallback (silent + textual feedback)
+
+Week 3:
+- immersive themes + theme switcher + token binding
+- main page integration + session recording
+- today's stats card
+
+Week 4:
+- stabilization and bug fixes
+- performance tune and UX polish
+- lint/test pass gate
+
+5) Quality gates
+- Accurate recovery after background/hidden tab
+- Persistent settings survive refresh
+- Audio failure never blocks timer flow
+- Minimum tests: timer FSM + persistence read/write
+- No hard-coded primary colors outside semantic exceptions
