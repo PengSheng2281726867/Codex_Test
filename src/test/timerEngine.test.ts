@@ -35,4 +35,22 @@ describe('TimerEngine', () => {
     expect(state.phase).toBe('focus')
     expect(state.round).toBe(2)
   })
+
+  it('consumes elapsed overflow across multiple phases when auto-start is enabled', () => {
+    const engine = new TimerEngine({
+      focusDurationSec: 2,
+      shortBreakDurationSec: 1,
+      longBreakDurationSec: 3,
+      roundsBeforeLongBreak: 2,
+      autoStartNext: true,
+    })
+
+    engine.start(0)
+    const state = engine.tick(7000)
+
+    expect(state.phase).toBe('long_break')
+    expect(state.status).toBe('running')
+    expect(state.round).toBe(2)
+    expect(state.remainingSec).toBe(1)
+  })
 })
