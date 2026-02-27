@@ -89,8 +89,11 @@ export class TimerEngine {
 
   tick(nowMs = Date.now()): TimerState {
     if (this.state.status !== 'running' || this.startedAtMs === null) return this.getState()
-    let elapsedSec = Math.floor((nowMs - this.startedAtMs) / 1000)
+    const elapsedMs = nowMs - this.startedAtMs
+    let elapsedSec = Math.floor(elapsedMs / 1000)
     if (elapsedSec <= 0) return this.getState()
+    const consumedMs = elapsedSec * 1000
+    const nextAnchorMs = nowMs - (elapsedMs - consumedMs)
 
     while (elapsedSec > 0) {
       if (elapsedSec < this.state.remainingSec) {
@@ -110,7 +113,7 @@ export class TimerEngine {
     }
 
     this.state.status = 'running'
-    this.startedAtMs = nowMs
+    this.startedAtMs = nextAnchorMs
     return this.getState()
   }
 

@@ -53,4 +53,22 @@ describe('TimerEngine', () => {
     expect(state.round).toBe(2)
     expect(state.remainingSec).toBe(1)
   })
+
+  it('preserves sub-second remainder across ticks', () => {
+    const engine = new TimerEngine({
+      focusDurationSec: 10,
+      shortBreakDurationSec: 5,
+      longBreakDurationSec: 5,
+      roundsBeforeLongBreak: 4,
+      autoStartNext: true,
+    })
+
+    engine.start(0)
+    engine.tick(1500)
+    const state = engine.tick(3000)
+
+    expect(state.phase).toBe('focus')
+    expect(state.remainingSec).toBe(7)
+    expect(state.status).toBe('running')
+  })
 })
