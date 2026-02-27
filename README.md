@@ -71,3 +71,9 @@ export default defineConfig([
   },
 ])
 ```
+
+## Update Log
+
+项目维护了 `UPDATE_LOG.md` 来记录每次更新摘要。
+请在每次提交前追加一条记录（日期 + Summary），确保变更可追踪。
+
